@@ -5,6 +5,10 @@ const acceptSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  lawyeremail: {
+    type: String,
+    required: true,
+  },
   firstname: {
     type: String,
     required: true,
@@ -34,6 +38,10 @@ const acceptSchema = new mongoose.Schema({
     required: true,
   },
   lawyername: {
+    type: String,
+    required: true,
+  },
+  meetingId: {
     type: String,
     required: true,
   },
