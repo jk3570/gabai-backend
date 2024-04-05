@@ -1,7 +1,8 @@
 const Chat = require('../models/chatModel');
 const OpenAI = require('openai');
 const dotenv = require('dotenv');
-
+//comment
+//commetnt
 // Define patterns for different types of discrimination events
 const discriminationPatterns = [
   { type: 'racial discrimination', patterns: ['race', 'racial', 'skin color', 'ethnicity'] },
