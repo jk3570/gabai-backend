@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
-<<<<<<< HEAD
+
 const Schema = mongoose.Schema;
 // const SummaryTool = require('node-summary');
-=======
-const Schema = mongoose.Schema;                               
->>>>>>> 67b02e6b78e65d5a6418e4b1043276520229f858
 
 const chatSchema = new Schema({
   title: { type: String, required: true },
@@ -13,7 +10,7 @@ const chatSchema = new Schema({
   createdAt: { type: Date, default: Date.now, required: true }
 });
 
-<<<<<<< HEAD
+
 // Update summary before saving
 chatSchema.pre('save', async function(next) {
   try {
@@ -26,7 +23,7 @@ chatSchema.pre('save', async function(next) {
     next(error);
   }
 });
-=======
+
 // // Update summary before saving
 // chatSchema.pre('save', async function(next) {
 //   try {
@@ -40,7 +37,7 @@ chatSchema.pre('save', async function(next) {
 //     next(error);
 //   }
 // });
->>>>>>> 67b02e6b78e65d5a6418e4b1043276520229f858
+
 
 // // Define the generateSummary function
 // const generateSummary = async (messages) => {
