@@ -1,6 +1,8 @@
 const Chat = require('../models/chatModel');
 const OpenAI = require('openai');
 const dotenv = require('dotenv');
+dotenv.config();
+
 //comment
 //commetnt
 // Define patterns for different types of discrimination events
@@ -24,7 +26,6 @@ const discriminationPatterns = [
   { type: 'economic discrimination', patterns: ['income', 'wealth', 'socioeconomic status'] },
 ];
 
-dotenv.config();
 
 const openai = new OpenAI({ apiKey: process.env.AI_API });
 
