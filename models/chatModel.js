@@ -10,6 +10,7 @@ const chatSchema = new Schema({
   createdAt: { type: Date, default: Date.now, required: true }
 });
 
+
 // // Update summary before saving
 // chatSchema.pre('save', async function(next) {
 //   try {
@@ -36,7 +37,6 @@ const chatSchema = new Schema({
 //     next(error);
 //   }
 // });
-
 
 // // Define the generateSummary function
 // const generateSummary = async (messages) => {
