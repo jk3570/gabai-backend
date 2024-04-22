@@ -223,12 +223,14 @@ const makeChat = async (req, res) => {
 
         console.log(`AI: ${response.choices[0].message.content}`);
 
-        // Extract the summary from the AI response if the relevant prompt is found
+                // Extract the summary from the AI response if the relevant prompt is found
         const relevantPrompt = 'Thank you for confirming. You can now request a video conference with a lawyer by clicking the Request a Video Conference button below.';
         const summaryIndex = response.choices[0].message.content.indexOf(relevantPrompt);
         if (summaryIndex !== -1) {
             summary = response.choices[0].message.content.substring(summaryIndex + relevantPrompt.length).trim();
             console.log(`Summary: ${summary}`); // Log the summary
+        } else {
+            summary = 'No relevant summary has been detected in the conversation.'; // Set a default value for summary
         }
 
         conversationHistory.push({ role: 'assistant', content: response.choices[0].message.content });
