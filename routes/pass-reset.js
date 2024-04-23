@@ -63,8 +63,8 @@ router.post("/forgot-password", validateEmail, async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'GabAi - Password Reset',
-      html: `<p>Hello ${user.firstname} ${user.lastname},</p><p>We've received a request to reset your password. If you didn't make this request, please ignore this email. Otherwise, please click <a href="${baseURL}/password-reset/${userId}">here</a> to reset your password. This link will expire in 1 hour for security reasons.</p>`,
+      subject: 'Password Reset',
+      html: `<p>Dear ${user.firstname} ${user.lastname},</p><p>We've received a request to reset your password. If you didn't make this request, please ignore this email. Otherwise, please click <a href="${baseURL}/password-reset/${userId}">here</a> to reset your password. This link will expire in 1 hour for security reasons.</p><p>Thank you for choosing our service. If you have any questions or need further assistance, feel free to contact our support team at support@paragon.com.</p><p>Best regards,<br/>The PARAGON Team</p>`,
     };
 
     await transporter.sendMail(mailOptions);
