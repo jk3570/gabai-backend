@@ -21,6 +21,8 @@ let labels; // Declare labels globally
 let tfidfFeatures; // Define tfidfFeatures globally
 let summary = ''; // Initialize the summary variable
 
+
+
 // Path to the training data JSON file
 const trainingDataPath = path.join(__dirname, 'WorkplaceDiscriminationDataset.json');
 
@@ -206,7 +208,7 @@ const makeChat = async (req, res) => {
         conversation.userid = userid;
 
         const response = await openai.chat.completions.create({
-            model: 'ft:gpt-3.5-turbo-0125:personal::94FoHzEH',
+            model: process.env.GPT_MODEL,
             messages: [
                 {
                     role: 'system',
