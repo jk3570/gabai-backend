@@ -3,6 +3,7 @@ const router = express.Router();
 const crypto = require("crypto");
 const userModel = require("../models/userModel");
 const nodemailer = require("nodemailer");
+const { baseURL } = require("./baseURL");
 
 require("dotenv").config();
 
