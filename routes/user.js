@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
 
 // controller functions
@@ -6,19 +7,17 @@ const { loginUser, signupUser, getAllUsers, totalUsers } = require("../controlle
 
 const router = express.Router();
 
-//get all users
+// Get all users
 router.get('/users', getAllUsers);
 router.get('/total', totalUsers);
 
-// // Update user route
-// router.put('/:userId', updateUser);
-
-// access login
+// Access login
 router.post("/login", loginUser);
 
-// access sign up
+// Access sign up
 router.post("/signup", signupUser);
 
+// Update password
 router.put("/update-password/:id", async (req, res) => {
   const { id } = req.params;
   const { newPassword } = req.body;
