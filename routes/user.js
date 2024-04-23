@@ -1,4 +1,5 @@
 const express = require("express");
+const userModel = require("../models/userModel");
 
 // controller functions
 const { loginUser, signupUser, getAllUsers, totalUsers } = require("../controllers/userController");
