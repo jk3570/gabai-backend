@@ -61,7 +61,7 @@ router.post("/forgot-password", validateEmail, async (req, res) => {
 
     // Send the email with the reset link
     const mailOptions = {
-      from: process.env.EMAIL_USERNAME,
+      from: process.env.EMAIL_USER,
       to: email,
       subject: 'Password Reset',
       html: `<p>Hi,</p><p>Please click <a href="${baseURL}/password-reset/${userId}">here</a> to reset your password.</p>`,
