@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const emailjs = require("@emailjs/nodejs");
-const { baseURL } = require("./baseURL");
+const { baseURL } = require("./routes/baseURL");
 
 // import routes
 const userRoutes = require('./routes/user');
