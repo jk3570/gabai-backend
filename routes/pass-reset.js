@@ -64,7 +64,7 @@ router.post("/forgot-password", validateEmail, async (req, res) => {
       from: process.env.EMAIL_USERNAME,
       to: email,
       subject: 'Password Reset',
-      html: `<p>Hi ${user.name},</p><p>Please click <a href="${baseURL}/password-reset/${userId}">here</a> to reset your password.</p>`,
+      html: `<p>Hi,</p><p>Please click <a href="${baseURL}/password-reset/${userId}">here</a> to reset your password.</p>`,
     };
 
     await transporter.sendMail(mailOptions);
