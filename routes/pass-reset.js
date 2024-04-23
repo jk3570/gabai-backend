@@ -1,16 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const crypto = require("crypto");
-const { baseURL } = require("./baseURL");
 const userModel = require("../models/userModel");
-const emailjs = require("@emailjs/nodejs");
+const nodemailer = require("nodemailer");
 
 require("dotenv").config();
 
-const serviceID = process.env.SERVICE_ID;
-const templateID = process.env.TEMPLATE_ID;
-const PublicKey = process.env.EJS_PUBID;
-const PrivateKey = process.env.EJS_PRIVATE;
+const transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
 // Define a middleware function to validate the email parameter
 const validateEmail = (req, res, next) => {
@@ -56,19 +58,17 @@ router.post("/forgot-password", validateEmail, async (req, res) => {
       )
       .then(() => console.log("Token saved to database"));
 
-    // Send the email with the user ID instead of the token
-    const response = await emailjs.send(
-      serviceID,
-      templateID,
-      {
-        user_name: user.name,
-        user_email: user.email,
-        reset_link: `${baseURL}/password-reset/${userId}`,
-      },
-      { publicKey: PublicKey, privateKey: PrivateKey }
-    );
+    // Send the email with the reset link
+    const mailOptions = {
+      from: process.env.EMAIL_USERNAME,
+      to: email,
+      subject: 'Password Reset',
+      html: `<p>Hi ${user.name},</p><p>Please click <a href="${baseURL}/password-reset/${userId}">here</a> to reset your password.</p>`,
+    };
 
-    console.log("Email sent successfully:", response);
+    await transporter.sendMail(mailOptions);
+    
+    console.log("Email sent successfully");
     res.send("Reset password email sent");
   } catch (error) {
     console.log("Failed to send email:", error);
@@ -91,4 +91,5 @@ router.get("/find/:id", async (req, res) => {
     res.status(500).send("Failed to fetch user email");
   }
 });
+
 module.exports = router;
