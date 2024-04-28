@@ -16,7 +16,7 @@ const requestForm = async (req, res) => {
         const { field1, field2, field3 } = req.body;
         const newData = new Request({ field1, field2, field3 });
         await newData.save();
-        res.status(201).json({ message: 'Data inserted successfully' });
+        res.status(201).json({ message: 'Request submitted successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -35,14 +35,29 @@ const getAllRequest = async (req, res) => {
 };
 
 // Get total number of cases
-const totalCases = async (req, res) => {
+const totalForms = async (req, res) => {
     try {
-        const totalCases = await Request.countDocuments();
-        res.json({ totalCases });
+        const totalForms = await Request.countDocuments();
+        res.json({ totalForms });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 };
 
-module.exports = { requestForm, getAllRequest, totalCases };
+// delete one schedule
+const deleteRequest = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedUser = await Request.findOneAndDelete({userid:id});
+    if (deletedUser) {
+      res.json({ message: 'User deleted successfully' });
+    } else {
+      res.status(404).json({ message: 'User not found' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+module.exports = { requestForm, getAllRequest, totalForms, deleteRequest };
